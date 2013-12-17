@@ -4,58 +4,8 @@
 
   <groupId>org.apache.kafka</groupId>
   <artifactId>kafka_2.8.0</artifactId>
-  <version>0.8.0-SNAPSHOT</version>
+  <version>0.8.1-SNAPSHOT</version>
   <packaging>jar</packaging>
-
-  <repositories>
-    <repository>
-      <id>gradientx-release-repo</id>
-      <name>Gradient X Release Repository</name>
-      <url>s3://codex.corp.gradientx.com/maven/release</url>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-    </repository>
-    <repository>
-      <id>gradientx-snapshot-repo</id>
-      <name>Gradient X Snapshot Repository</name>
-      <url>s3://codex.corp.gradientx.com/maven/snapshot</url>
-      <releases>
-        <enabled>false</enabled>
-      </releases>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-    </repository>
-  </repositories>
-  
-  <pluginRepositories>
-    <pluginRepository>
-      <id>gradientx-release-repo</id>
-      <name>Gradient X Release Repository</name>
-      <url>s3://codex.corp.gradientx.com/maven/release</url>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-    </pluginRepository>
-    <pluginRepository>
-      <id>gradientx-snapshot-repo</id>
-      <name>Gradient X Snapshot Repository</name>
-      <url>s3://codex.corp.gradientx.com/maven/snapshot</url>
-      <releases>
-        <enabled>false</enabled>
-      </releases>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-    </pluginRepository>
-  </pluginRepositories>
 
   <name>kafka</name>
   <url>http://maven.apache.org</url>
@@ -73,17 +23,42 @@
       </extension>
     </extensions>
   </build>
-  
+
+  <repositories>
+    <repository>
+      <id>gradientx-release-repo</id>
+      <name>Gradient X Release Repository</name>
+      <url>s3://prod.codex.gradientx.com/maven/release</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+    <repository>
+      <id>gradientx-snapshot-repo</id>
+      <name>Gradient X Snapshot Repository</name>
+      <url>s3://prod.codex.gradientx.com/maven/snapshot</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+
   <distributionManagement>
     <repository>
       <id>gradientx-release-repo</id>
       <name>Gradient X Release Repository</name>
-      <url>s3://codex.corp.gradientx.com/maven/release</url>
+      <url>s3://prod.codex.gradientx.com/maven/release</url>
     </repository>
     <snapshotRepository>
       <id>gradientx-snapshot-repo</id>
       <name>Gradient X Snapshot Repository</name>
-      <url>s3://codex.corp.gradientx.com/maven/snapshot</url>
+      <url>s3://prod.codex.gradientx.com/maven/snapshot</url>
     </snapshotRepository>
   </distributionManagement>
 
