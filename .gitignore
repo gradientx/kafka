@@ -14,3 +14,14 @@ project/sbt_project_definition.iml
 .#*
 rat.out
 TAGS
+.project
+.settings/
+*.iml
+.gradle
+clients/build/
+contrib/build/
+contrib/hadoop-consumer/build/
+contrib/hadoop-producer/build/
+core/build/
+examples/build/
+perf/build/
