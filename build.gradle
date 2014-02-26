@@ -22,6 +22,9 @@ buildscript {
 
 allprojects {
   apply plugin: 'idea'
+  configurations {
+    deployerJars
+  }
   repositories {
     mavenCentral()
   }
@@ -34,33 +37,19 @@ subprojects {
   apply plugin: 'java'
   apply plugin: 'eclipse'
   apply plugin: 'maven'
-  apply plugin: 'signing'
+
+  dependencies{
+    deployerJars "org.kuali.maven.wagons:maven-s3-wagon:1.1.20"
+  }
 
   uploadArchives {
     repositories {
-      signing {
-        sign configurations.archives
-
-        // To test locally, replace mavenUrl in ~/.gradle/gradle.properties to file://localhost/tmp/myRepo/
+      // To test locally, replace mavenUrl in ~/.gradle/gradle.properties to file://localhost/tmp/myRepo/
+      repositories {
         mavenDeployer {
-          beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
-          repository(url: "${mavenUrl}") {
-            authentication(userName: "${mavenUsername}", password: "${mavenPassword}")
-          }
-          afterEvaluate {
-            pom.artifactId = "${archivesBaseName}"
-            pom.project {
-              name 'Apache Kafka'
-              packaging 'jar'
-              url 'http://kafka.apache.org'
-              licenses {
-                license {
-                  name 'The Apache Software License, Version 2.0'
-                  url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-                  distribution 'repo'
-                }
-              }
-            }
+          configuration = configurations.deployerJars
+          repository(url: "s3://prod.codex.gradientx.com/maven/snapshot"){
+            authentication(userName: "AKIAIJZJRUEQLXVWWLEA", password: "2emUyk7LBO9LtRxSX++fpAxz8kIoZPEw6PvTz501")
           }
         }
       }
