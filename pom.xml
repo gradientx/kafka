@@ -121,7 +121,6 @@
                                 <argument>${project.groupId}</argument>
                                 <argument>${project.artifactId}</argument>
                                 <argument>${project.version}</argument>
-                                <argument>tar.gz</argument>
                                 <argument>${isReleaseBuild}</argument>
                             </arguments>
                         </configuration>
