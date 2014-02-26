@@ -9,7 +9,7 @@ PROJECT=$ARTIFACT_ID-$VERSION
 
 mvn install:install-file \
   -DgroupId=$GROUP_ID \
-  -DartifactId=$ARTIFACT_ID-distribution \
+  -DartifactId=$ARTIFACT_ID \
   -Dversion=$VERSION \
   -Dpackaging=$PACKAGING \
   -DgeneratePom=true \
@@ -25,7 +25,7 @@ mvn install:install-file \
 if [ $IS_RELEASE == "true" ]; then
     mvn deploy:deploy-file \
       -DgroupId=$GROUP_ID \
-      -DartifactId=$ARTIFACT_ID-distribution \
+      -DartifactId=$ARTIFACT_ID \
       -Dversion=$VERSION \
       -Dpackaging=$PACKAGING \
       -DgeneratePom=true \
@@ -44,7 +44,7 @@ if [ $IS_RELEASE == "true" ]; then
 else
     mvn deploy:deploy-file \
       -DgroupId=$GROUP_ID \
-      -DartifactId=$ARTIFACT_ID-distribution \
+      -DartifactId=$ARTIFACT_ID \
       -Dversion=$VERSION \
       -Dpackaging=$PACKAGING \
       -DgeneratePom=true \
