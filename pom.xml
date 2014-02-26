@@ -8,7 +8,6 @@
     <packaging>jar</packaging>
 
     <name>kafka</name>
-    <url>http://maven.apache.org</url>
 
     <scm>
         <url>https://github.com/gradientx/kafka</url>
