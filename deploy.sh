@@ -9,11 +9,7 @@ PACKAGING_TAG_GZ=tar.gz
 PROJECT=$ARTIFACT_ID-$VERSION
 
 mvn install:install-file \
-  -DgroupId=$GROUP_ID \
-  -DartifactId=$ARTIFACT_ID \
-  -Dversion=$VERSION \
-  -Dpackaging=$PACKAGING_JAR \
-  -DgeneratePom=true \
+  -DpomFile = core/build/pom.xml \
   -Dfile=core/build/libs/$PROJECT.$PACKAGING_JAR
 
 mvn install:install-file \
@@ -25,11 +21,7 @@ mvn install:install-file \
 
 if [ $IS_RELEASE == "true" ]; then
     mvn deploy:deploy-file \
-      -DgroupId=$GROUP_ID \
-      -DartifactId=$ARTIFACT_ID \
-      -Dversion=$VERSION \
-      -Dpackaging=$PACKAGING_JAR \
-      -DgeneratePom=true \
+      -DpomFile = core/build/pom.xml \
       -Dfile=core/build/libs/$PROJECT.$PACKAGING_JAR \
       -DrepositoryId=gradientx-release-repo \
       -Durl=http://artifactory.gradientx.com:8081/artifactory/libs-release-local
@@ -44,11 +36,7 @@ if [ $IS_RELEASE == "true" ]; then
       -Durl=http://artifactory.gradientx.com:8081/artifactory/libs-release-local
 else
     mvn deploy:deploy-file \
-      -DgroupId=$GROUP_ID \
-      -DartifactId=$ARTIFACT_ID \
-      -Dversion=$VERSION \
-      -Dpackaging=$PACKAGING_JAR \
-      -DgeneratePom=true \
+      -DpomFile = core/build/pom.xml \
       -Dfile=core/build/libs/$PROJECT.$PACKAGING_JAR \
       -DrepositoryId=gradientx-snapshot-repo \
       -Durl=http://stage-artifactory001.ae1i.gradientx.com:8081/artifactory/libs-snapshot-local

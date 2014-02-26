@@ -22,11 +22,17 @@ buildscript {
 
 allprojects {
   apply plugin: 'idea'
+  apply plugin: 'maven'
   configurations {
     deployerJars
   }
   repositories {
     mavenCentral()
+  }
+
+  task writeNewPom << {
+    pom {
+    }.writeTo("$buildDir/pom.xml")
   }
 }
 
@@ -181,7 +187,7 @@ project(':core') {
   }
   
   jar {
-    dependsOn 'copyDependantLibs'
+    dependsOn 'copyDependantLibs', 'writeNewPom'
     from '../LICENSE'
     from '../NOTICE'
   }
@@ -214,6 +220,7 @@ project(':perf') {
   }
 
   jar {
+    dependsOn 'writeNewPom'
     from '../LICENSE'
     from '../NOTICE'
   }
@@ -244,6 +251,7 @@ project(':contrib:hadoop-consumer') {
   }
 
   jar {
+    dependsOn 'writeNewPom'
     from '../LICENSE'
     from '../NOTICE'
   }
@@ -274,6 +282,7 @@ project(':contrib:hadoop-producer') {
   }
 
   jar {
+    dependsOn 'writeNewPom'
     from '../LICENSE'
     from '../NOTICE'
   }
@@ -287,6 +296,7 @@ project(':examples') {
   }
 
   jar {
+    dependsOn 'writeNewPom'
     from '../LICENSE'
     from '../NOTICE'
   }
@@ -300,6 +310,7 @@ project(':clients') {
   }
 
   jar {
+    dependsOn 'writeNewPom'
     from '../LICENSE'
     from '../NOTICE'
   }
