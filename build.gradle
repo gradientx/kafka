@@ -22,17 +22,11 @@ buildscript {
 
 allprojects {
   apply plugin: 'idea'
-  apply plugin: 'maven'
   configurations {
     deployerJars
   }
   repositories {
     mavenCentral()
-  }
-
-  task writeNewPom << {
-    pom {
-    }.writeTo("$buildDir/pom.xml")
   }
 }
 
@@ -115,6 +109,7 @@ project(':core') {
   println "Building project 'core' with Scala version $scalaVersion"
 
   apply plugin: 'scala'
+  apply plugin: 'maven'
   archivesBaseName = "kafka_${baseScalaVersion}"
 
   def (major, minor, trivial) = scalaVersion.tokenize('.')
@@ -192,6 +187,14 @@ project(':core') {
     from '../NOTICE'
   }
 
+  task writeNewPom << {
+    pom {
+      project {
+          artifactId "${archivesBaseName}"
+      }
+    }.writeTo("$buildDir/pom.xml")
+  }
+
   task testJar(type: Jar) {
     appendix = 'test'
     from sourceSets.test.output
@@ -209,6 +212,7 @@ project(':perf') {
   println "Building project 'perf' with Scala version $scalaVersion"
 
   apply plugin: 'scala'
+  apply plugin: 'maven'
   archivesBaseName = "kafka-perf_${baseScalaVersion}"
 
   dependencies {
@@ -224,9 +228,18 @@ project(':perf') {
     from '../LICENSE'
     from '../NOTICE'
   }
+
+  task writeNewPom << {
+    pom {
+      project {
+        artifactId "${archivesBaseName}"
+      }
+    }.writeTo("$buildDir/pom.xml")
+  }
 }
 
 project(':contrib:hadoop-consumer') {
+  apply plugin: 'maven'
   archivesBaseName = "kafka-hadoop-consumer"
 
   dependencies {
@@ -255,9 +268,18 @@ project(':contrib:hadoop-consumer') {
     from '../LICENSE'
     from '../NOTICE'
   }
+
+  task writeNewPom << {
+    pom {
+      project {
+        artifactId "${archivesBaseName}"
+      }
+    }.writeTo("$buildDir/pom.xml")
+  }
 }
 
 project(':contrib:hadoop-producer') {
+  apply plugin: 'maven'
   archivesBaseName = "kafka-hadoop-producer"
 
   dependencies {
@@ -286,9 +308,18 @@ project(':contrib:hadoop-producer') {
     from '../LICENSE'
     from '../NOTICE'
   }
+
+  task writeNewPom << {
+    pom {
+      project {
+        artifactId "${archivesBaseName}"
+      }
+    }.writeTo("$buildDir/pom.xml")
+  }
 }
 
 project(':examples') {
+  apply plugin: 'maven'
   archivesBaseName = "kafka-examples"
 
   dependencies {
@@ -300,9 +331,18 @@ project(':examples') {
     from '../LICENSE'
     from '../NOTICE'
   }
+
+  task writeNewPom << {
+    pom {
+      project {
+        artifactId "${archivesBaseName}"
+      }
+    }.writeTo("$buildDir/pom.xml")
+  }
 }
 
 project(':clients') {
+  apply plugin: 'maven'
   archivesBaseName = "kafka-clients"
 
   dependencies {
@@ -313,6 +353,14 @@ project(':clients') {
     dependsOn 'writeNewPom'
     from '../LICENSE'
     from '../NOTICE'
+  }
+
+  task writeNewPom << {
+    pom {
+      project {
+        artifactId "${archivesBaseName}"
+      }
+    }.writeTo("$buildDir/pom.xml")
   }
 
   task testJar(type: Jar) {
