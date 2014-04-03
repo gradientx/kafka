@@ -49,7 +49,7 @@ subprojects {
         mavenDeployer {
           configuration = configurations.deployerJars
           repository(url: "s3://prod.codex.gradientx.com/maven/snapshot"){
-            authentication(userName: "AKIAIJZJRUEQLXVWWLEA", password: "2emUyk7LBO9LtRxSX++fpAxz8kIoZPEw6PvTz501")
+            authentication(userName: "REPLACEME", password: "REPLACEME")
           }
         }
       }
